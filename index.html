@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Handwritten Digits Recognition | ML Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <span class="brand-icon"><i class="fa-solid fa-brain"></i></span>
+      <span class="brand-text">DigitAI</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="pages/demo.html">Live Demo</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <canvas id="particleCanvas"></canvas>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fa-solid fa-graduation-cap"></i>
+        Diploma in Computer Science &nbsp;|&nbsp; Usha Martin University
+      </div>
+      <h1 class="hero-title">
+        Handwritten <span class="gradient-text">Digits</span><br/>
+        Recognition
+      </h1>
+      <p class="hero-subtitle">
+        A deep learning powered system using CNN, SVM &amp; MLP to recognize
+        handwritten digits with near-human accuracy — bridging human writing
+        and digital intelligence.
+      </p>
+      <div class="hero-cta">
+        <a href="pages/demo.html" class="btn btn-primary">
+          <i class="fa-solid fa-pen-nib"></i> Try Live Demo
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="digit-grid" id="digitGrid"></div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll to explore</span>
+      <i class="fa-solid fa-chevron-down bounce"></i>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card" data-target="99.2">
+          <div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
+          <div class="stat-value"><span class="counter">0</span>%</div>
+          <div class="stat-label">Model Accuracy</div>
+        </div>
+        <div class="stat-card" data-target="70000">
+          <div class="stat-icon"><i class="fa-solid fa-database"></i></div>
+          <div class="stat-value"><span class="counter">0</span>+</div>
+          <div class="stat-label">MNIST Images</div>
+        </div>
+        <div class="stat-card" data-target="3">
+          <div class="stat-icon"><i class="fa-solid fa-robot"></i></div>
+          <div class="stat-value"><span class="counter">0</span></div>
+          <div class="stat-label">ML Models Compared</div>
+        </div>
+        <div class="stat-card" data-target="10">
+          <div class="stat-icon"><i class="fa-solid fa-hashtag"></i></div>
+          <div class="stat-value"><span class="counter">0</span></div>
+          <div class="stat-label">Digit Classes (0–9)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="overview-section section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Project Overview</span>
+        <h2>What is this project about?</h2>
+        <p>An end-to-end machine learning system that automatically recognizes handwritten digits using state-of-the-art deep learning techniques.</p>
+      </div>
+      <div class="overview-grid">
+        <div class="overview-card" data-delay="0">
+          <div class="card-icon gradient-blue">
+            <i class="fa-solid fa-image"></i>
+          </div>
+          <h3>Image Preprocessing</h3>
+          <p>Normalizes pixel values, removes noise, and resizes input images to a standard 28×28 grayscale format for consistent model input.</p>
+        </div>
+        <div class="overview-card" data-delay="100">
+          <div class="card-icon gradient-purple">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <h3>CNN Architecture</h3>
+          <p>Convolutional Neural Networks automatically learn edges, curves, and textures from raw pixel data, delivering near-human recognition accuracy.</p>
+        </div>
+        <div class="overview-card" data-delay="200">
+          <div class="card-icon gradient-green">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <h3>Model Evaluation</h3>
+          <p>Comprehensive benchmarking using Accuracy, Precision, Recall, and F1-Score across SVM, MLP, and CNN architectures.</p>
+        </div>
+        <div class="overview-card" data-delay="300">
+          <div class="card-icon gradient-orange">
+            <i class="fa-solid fa-window-maximize"></i>
+          </div>
+          <h3>Real-Time GUI</h3>
+          <p>An interactive graphical user interface enables users to draw digits and receive instant predictions from the trained model.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODELS COMPARISON -->
+  <section class="models-section section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Model Comparison</span>
+        <h2>Algorithms Compared</h2>
+        <p>Three machine learning models are evaluated to identify the most accurate and efficient approach.</p>
+      </div>
+      <div class="models-grid">
+        <div class="model-card">
+          <div class="model-rank">3rd</div>
+          <div class="model-name">SVM</div>
+          <div class="model-full">Support Vector Machine</div>
+          <div class="model-accuracy-bar">
+            <div class="bar-fill svm-bar" data-width="97.8"></div>
+          </div>
+          <div class="model-accuracy-val">~97.8% Accuracy</div>
+          <ul class="model-traits">
+            <li><i class="fa-solid fa-check"></i> Good generalization</li>
+            <li><i class="fa-solid fa-check"></i> Works with small data</li>
+            <li><i class="fa-solid fa-xmark"></i> Limited scalability</li>
+          </ul>
+        </div>
+        <div class="model-card">
+          <div class="model-rank">2nd</div>
+          <div class="model-name">MLP</div>
+          <div class="model-full">Multi-Layer Perceptron</div>
+          <div class="model-accuracy-bar">
+            <div class="bar-fill mlp-bar" data-width="98.4"></div>
+          </div>
+          <div class="model-accuracy-val">~98.4% Accuracy</div>
+          <ul class="model-traits">
+            <li><i class="fa-solid fa-check"></i> Learns non-linear patterns</li>
+            <li><i class="fa-solid fa-check"></i> Flexible architecture</li>
+            <li><i class="fa-solid fa-xmark"></i> Manual feature extraction</li>
+          </ul>
+        </div>
+        <div class="model-card featured">
+          <div class="model-badge">Best Model</div>
+          <div class="model-rank">1st</div>
+          <div class="model-name">CNN</div>
+          <div class="model-full">Convolutional Neural Network</div>
+          <div class="model-accuracy-bar">
+            <div class="bar-fill cnn-bar" data-width="99.2"></div>
+          </div>
+          <div class="model-accuracy-val">~99.2% Accuracy</div>
+          <ul class="model-traits">
+            <li><i class="fa-solid fa-check"></i> Automatic feature learning</li>
+            <li><i class="fa-solid fa-check"></i> Spatial hierarchy</li>
+            <li><i class="fa-solid fa-check"></i> Near-human accuracy</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIPELINE PREVIEW -->
+  <section class="pipeline-section section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Workflow</span>
+        <h2>Recognition Pipeline</h2>
+        <p>A structured end-to-end pipeline from raw image input to digit prediction.</p>
+      </div>
+      <div class="pipeline">
+        <div class="pipeline-step" data-step="1">
+          <div class="step-icon"><i class="fa-solid fa-image"></i></div>
+          <div class="step-label">Input Image</div>
+          <div class="step-desc">Scanned or drawn digit</div>
+        </div>
+        <div class="pipeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="pipeline-step" data-step="2">
+          <div class="step-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <div class="step-label">Preprocessing</div>
+          <div class="step-desc">Normalize &amp; denoise</div>
+        </div>
+        <div class="pipeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="pipeline-step" data-step="3">
+          <div class="step-icon"><i class="fa-solid fa-microscope"></i></div>
+          <div class="step-label">Feature Extraction</div>
+          <div class="step-desc">CNN edge detection</div>
+        </div>
+        <div class="pipeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="pipeline-step" data-step="4">
+          <div class="step-icon"><i class="fa-solid fa-gears"></i></div>
+          <div class="step-label">Model Training</div>
+          <div class="step-desc">CNN / SVM / MLP</div>
+        </div>
+        <div class="pipeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="pipeline-step" data-step="5">
+          <div class="step-icon"><i class="fa-solid fa-chart-bar"></i></div>
+          <div class="step-label">Evaluation</div>
+          <div class="step-desc">Accuracy metrics</div>
+        </div>
+        <div class="pipeline-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="pipeline-step" data-step="6">
+          <div class="step-icon"><i class="fa-solid fa-tag"></i></div>
+          <div class="step-label">Prediction</div>
+          <div class="step-desc">Output digit 0–9</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <h2>Experience Real-Time Digit Recognition</h2>
+        <p>Draw a digit (0–9) on the canvas and let the AI predict it instantly.</p>
+        <a href="pages/demo.html" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-pen-nib"></i> Launch Live Demo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <i class="fa-solid fa-brain"></i> DigitAI
+          </div>
+          <p>A machine learning project for handwritten digit recognition using CNN, SVM, and MLP.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="pages/demo.html">Live Demo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Project Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-university"></i> Usha Martin University</li>
+            <li><i class="fa-solid fa-book"></i> Diploma in Computer Science</li>
+            <li><i class="fa-solid fa-calendar"></i> August 2025</li>
+            <li><i class="fa-solid fa-database"></i> MNIST Dataset</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Aditya Kumar Verma | Handwritten Digits Recognition Project</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+/* ============================================================
+   GLOBAL STYLES — DigitAI
+   ============================================================ */
+
+:root {
+  --primary:      #6c63ff;
+  --primary-dark: #4f46e5;
+  --secondary:    #00d4aa;
+  --accent:       #ff6584;
+  --bg:           #0a0a0f;
+  --bg-card:      #12121a;
+  --bg-card2:     #1a1a28;
+  --border:       rgba(255,255,255,0.08);
+  --text:         #e8e8f0;
+  --text-muted:   #8888aa;
+  --gradient:     linear-gradient(135deg, #6c63ff, #00d4aa);
+  --gradient-rev: linear-gradient(135deg, #00d4aa, #6c63ff);
+  --shadow:       0 8px 32px rgba(0,0,0,0.4);
+  --radius:       16px;
+  --radius-sm:    10px;
+  --transition:   0.3s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h1 { font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 700; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+h4 { font-size: 1rem; font-weight: 600; }
+p  { color: var(--text-muted); }
+
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section   { padding: 100px 0; }
+
+/* ============================================================
+   SECTION HEADER
+   ============================================================ */
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.section-header h2 { margin-bottom: 12px; }
+.section-header p  { max-width: 600px; margin: 0 auto; }
+
+.section-tag {
+  display: inline-block;
+  background: rgba(108,99,255,0.15);
+  color: var(--primary);
+  border: 1px solid rgba(108,99,255,0.3);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background: rgba(10,10,15,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: var(--transition);
+}
+.navbar.scrolled {
+  border-bottom-color: var(--border);
+  padding: 12px 40px;
+}
+
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 1.3rem; font-weight: 800; color: var(--text);
+}
+.brand-icon { color: var(--primary); font-size: 1.5rem; }
+
+.nav-links {
+  display: flex; gap: 8px;
+}
+.nav-links a {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text);
+  background: rgba(108,99,255,0.15);
+}
+.nav-links a.active { color: var(--primary); }
+
+.hamburger {
+  display: none;
+  flex-direction: column; gap: 5px;
+  background: none; border: none;
+  cursor: pointer; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 0.95rem; font-weight: 600;
+  cursor: pointer; border: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(108,99,255,0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(108,99,255,0.6);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+.btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(108,99,255,0.08);
+}
+.btn-lg { padding: 16px 36px; font-size: 1.05rem; }
+
+/* ============================================================
+   CARDS (shared)
+   ============================================================ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: var(--transition);
+}
+.card:hover {
+  border-color: rgba(108,99,255,0.3);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+/* Gradient icon backgrounds */
+.card-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+  color: #fff;
+}
+.gradient-blue   { background: linear-gradient(135deg,#6c63ff,#3b82f6); }
+.gradient-purple { background: linear-gradient(135deg,#a855f7,#ec4899); }
+.gradient-green  { background: linear-gradient(135deg,#10b981,#06b6d4); }
+.gradient-orange { background: linear-gradient(135deg,#f59e0b,#ef4444); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 60px 0 20px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.footer-brand {
+  font-size: 1.4rem; font-weight: 800;
+  color: var(--text); margin-bottom: 12px;
+}
+.footer-brand i { color: var(--primary); }
+.footer-col h4 {
+  color: var(--text); margin-bottom: 16px;
+  font-size: 0.9rem; text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.footer-col ul li {
+  margin-bottom: 10px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  display: flex; align-items: center; gap: 8px;
+}
+.footer-col ul li a { color: var(--text-muted); transition: var(--transition); }
+.footer-col ul li a:hover { color: var(--primary); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(8px); }
+}
+.bounce { animation: bounce 1.5s ease-in-out infinite; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+
+@keyframes pulse-glow {
+  0%,100% { box-shadow: 0 0 20px rgba(108,99,255,0.3); }
+  50%      { box-shadow: 0 0 40px rgba(108,99,255,0.7); }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .navbar { padding: 16px 20px; }
+  .nav-links { display: none; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: rgba(10,10,15,0.98);
+    border-bottom: 1px solid var(--border);
+    padding: 16px;
+    gap: 4px;
+  }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 600px) {
+  .section { padding: 60px 0; }
+  .btn-lg  { padding: 14px 24px; font-size: 1rem; }
+}

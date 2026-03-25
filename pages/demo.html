@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live Demo | Handwritten Digits Recognition</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/pages.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <span class="brand-icon"><i class="fa-solid fa-brain"></i></span>
+      <span class="brand-text">DigitAI</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="demo.html" class="active">Live Demo</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-tag">Interactive Demo</span>
+      <h1>Draw a Digit, <span class="gradient-text">AI Predicts It</span></h1>
+      <p>Draw any digit from 0 to 9 on the canvas below and Groq Vision AI will recognize it instantly.</p>
+    </div>
+  </section>
+
+  <!-- DEMO MAIN -->
+  <section class="section">
+    <div class="container">
+      <div class="demo-layout">
+
+        <!-- Canvas -->
+        <div class="canvas-wrapper">
+          <h3><i class="fa-solid fa-pen-nib" style="color:var(--primary);margin-right:8px;"></i>Draw Here</h3>
+          <div style="font-size:0.82rem;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+            <i id="modelStatusIcon" class="fa-solid fa-circle-notch fa-spin" style="color:#a5a0ff;"></i>
+            <span id="modelStatus">Initializing CNN model...</span>
+          </div>
+          <canvas id="drawCanvas"></canvas>
+          <div class="canvas-controls">
+            <button class="btn btn-primary" id="predictBtn">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Predict
+            </button>
+            <button class="btn btn-danger" id="clearBtn">
+              <i class="fa-solid fa-trash"></i> Clear
+            </button>
+          </div>
+          <p id="predictionStatus" style="font-size:0.8rem;margin-top:8px;min-height:18px;"></p>
+          <p style="font-size:0.8rem;color:var(--text-muted);margin-top:12px;">
+            <i class="fa-solid fa-info-circle" style="color:var(--primary);"></i>
+            Draw a single digit (0–9) using your mouse or touch. Keep it centered and large for best results.
+          </p>
+        </div>
+
+        <!-- Results -->
+        <div class="result-panel">
+          <h3 style="color:var(--text);"><i class="fa-solid fa-chart-bar" style="color:var(--primary);margin-right:8px;"></i>Prediction Result</h3>
+
+          <div class="result-display">
+            <div class="result-digit" id="resultDigit">?</div>
+            <div class="result-label">Predicted Digit</div>
+          </div>
+
+          <div>
+            <div class="confidence-label"><i class="fa-solid fa-percent" style="color:var(--primary);margin-right:6px;"></i>Confidence per class</div>
+            <div class="conf-bars">
+              <div class="conf-row"><span class="conf-digit">0</span><div class="conf-bar-bg"><div class="conf-bar-fill"></div></div><span class="conf-pct">0%</span></div>
+              <div class="conf-row"><span class="conf-digit">1</span><div class="conf-bar-bg"><div class="conf-bar-fill"></div></div><span class="conf-pct">0%</span></div>
+              <div class="conf-row"><span class="conf-digit">2</span><div class="conf-bar-bg"><div class="conf-bar-fill"></div></div><span class="conf-pct">0%</span></div>
+              <div class="conf-row"><span class="conf-digit">3</span><div class="conf-bar-bg"><div class="conf-bar-fill"></div></div><span class="conf-pct">0%</span></div>
+              <div class="conf-row"><span class="conf-digit">4</span><div class="conf-bar-bg"><div class="conf-bar-fill"></div></div><span class="conf-pct">0%</span></div>
+              <div class="conf-row"><span class="conf-digit">5</span><div class="conf-bar-bg"><div class="conf-bar-fill"></div></div><span class="conf-pct">0%</span></div>
+              <div class="conf-row"><span class="conf-digit">6</span><div class="conf-bar-bg"><div class="conf-bar-fill"></div></div><span class="conf-pct">0%</span></div>
+              <div class="conf-row"><span class="conf-digit">7</span><div class="conf-bar-bg"><div class="conf-bar-fill"></div></div><span class="conf-pct">0%</span></div>
+              <div class="conf-row"><span class="conf-digit">8</span><div class="conf-bar-bg"><div class="conf-bar-fill"></div></div><span class="conf-pct">0%</span></div>
+              <div class="conf-row"><span class="conf-digit">9</span><div class="conf-bar-bg"><div class="conf-bar-fill"></div></div><span class="conf-pct">0%</span></div>
+            </div>
+          </div>
+
+          <div class="demo-hint">
+            <i class="fa-solid fa-lightbulb"></i>
+            <strong>Tip:</strong> Draw the digit large and centered on the canvas for the highest accuracy. Click "Predict" after drawing.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sample digits -->
+      <div class="demo-samples">
+        <h3>Or try a sample digit:</h3>
+        <div class="sample-digits">
+          <button class="sample-btn" data-digit="0">0</button>
+          <button class="sample-btn" data-digit="1">1</button>
+          <button class="sample-btn" data-digit="2">2</button>
+          <button class="sample-btn" data-digit="3">3</button>
+          <button class="sample-btn" data-digit="4">4</button>
+          <button class="sample-btn" data-digit="5">5</button>
+          <button class="sample-btn" data-digit="6">6</button>
+          <button class="sample-btn" data-digit="7">7</button>
+          <button class="sample-btn" data-digit="8">8</button>
+          <button class="sample-btn" data-digit="9">9</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section bg-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Under the Hood</span>
+        <h2>How the Demo Works</h2>
+        <p>What happens between your drawing and the prediction result.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem;color:var(--primary);margin-bottom:12px;"><i class="fa-solid fa-pen-nib"></i></div>
+          <h4 style="color:var(--text);margin-bottom:8px;">1. Draw</h4>
+          <p style="font-size:0.85rem;">You draw a digit on the 280×280 HTML5 canvas using mouse or touch.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem;color:var(--primary);margin-bottom:12px;"><i class="fa-solid fa-image"></i></div>
+          <h4 style="color:var(--text);margin-bottom:8px;">2. Capture</h4>
+          <p style="font-size:0.85rem;">The canvas is captured as a PNG image and encoded to base64.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem;color:var(--primary);margin-bottom:12px;"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <h4 style="color:var(--text);margin-bottom:8px;">3. Groq Vision</h4>
+          <p style="font-size:0.85rem;">The image is sent to <strong style="color:var(--primary)">Groq Vision AI</strong> (Llama 4 Scout) which reads and identifies the digit.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem;color:var(--primary);margin-bottom:12px;"><i class="fa-solid fa-tag"></i></div>
+          <h4 style="color:var(--text);margin-bottom:8px;">4. Output</h4>
+          <p style="font-size:0.85rem;">Groq returns the predicted digit with confidence scores for all 10 classes (0–9).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand"><i class="fa-solid fa-brain"></i> DigitAI</div>
+          <p>A machine learning project for handwritten digit recognition using CNN, SVM, and MLP.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="demo.html">Live Demo</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Project Info</h4>
+          <ul>
+            <li><i class="fa-solid fa-university"></i> Usha Martin University</li>
+            <li><i class="fa-solid fa-book"></i> Diploma in Computer Science</li>
+            <li><i class="fa-solid fa-calendar"></i> August 2025</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Aditya Kumar Verma | Handwritten Digits Recognition Project</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/demo.js"></script>
+</body>
+</html>
